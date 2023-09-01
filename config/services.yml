@@ -1,0 +1,41 @@
+services:
+    _defaults:
+        public: true
+
+    mp.module.mpconfigmanager.uploader.config_image:
+        class: Mp\Module\MpConfigManager\Services\ConfigImageUploader
+
+    mp.module.mpconfigmanager.form.type.config:
+        class: Mp\Module\MpConfigManager\Form\Type\ConfigType
+        tags: ['form.type']
+        parent: 'form.type.translatable.aware'
+        public: true
+
+    mp.module.mpconfigmanager.grid.definition.factory.config:
+        class: Mp\Module\MpConfigManager\Grid\Definition\Factory\ConfigDefinitionFactory
+        arguments:
+            - '@prestashop.core.hook.dispatcher'
+        calls:
+            - { method: setTranslator, arguments: ['@translator'] }
+
+    mp.module.mpconfigmanager.grid.query_builder.config:
+        class: Mp\Module\MpConfigManager\Grid\Query\ConfigQueryBuilder
+        arguments:
+            - '@doctrine.dbal.default_connection'
+            - '%database_prefix%'
+
+    mp.module.mpconfigmanager.grid.data.factory.config:
+        class: PrestaShop\PrestaShop\Core\Grid\Data\Factory\DoctrineGridDataFactory
+        arguments:
+            - '@mp.module.mpconfigmanager.grid.query_builder.config'
+            - '@prestashop.core.hook.dispatcher'
+            - '@prestashop.core.grid.query.doctrine_query_parser'
+            - 'config'
+
+    mp.module.mpconfigmanager.grid.factory.config:
+        class: PrestaShop\PrestaShop\Core\Grid\GridFactory
+        arguments:
+            - '@mp.module.mpconfigmanager.grid.definition.factory.config'
+            - '@mp.module.mpconfigmanager.grid.data.factory.config'
+            - '@prestashop.core.grid.filter.form_factory'
+            - '@prestashop.core.hook.dispatcher'

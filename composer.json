@@ -1,0 +1,26 @@
+{
+  "name": "mp/mpconfigmanager",
+  "description": "Add a configuration manager",
+  "homepage": "https://web.marvin-poticadou.fr",
+  "license": "AFL-3.0",
+  "authors": [
+    {
+      "name": "Marvin POTICADOU",
+      "email": "marvin.poticadou@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mp\\Module\\MpConfigManager\\": "src/"
+    },
+    "classmap": ["mpconfigmanager.php"],
+    "exclude-from-classmap": []
+  },
+  "config": {
+    "prepend-autoloader": false
+  },
+  "type": "prestashop-module"
+}

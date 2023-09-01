@@ -1,0 +1,38 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+{% trans_default_domain 'Admin.Design.Feature' %}
+
+{% block content %}
+  {{ form_start(form) }}
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+      <div class="card">
+        <h3 class="card-header">
+          <i class="material-icons">mode_edit</i>
+          {% if form.vars.data.id is defined and form.vars.data.id %}
+            {{ 'Edit'|trans({}, 'Modules.Mpconfigmanager.Admin') }}
+          {% else %}
+            {{ 'New Configuration'|trans({}, 'Modules.Mpconfigmanager.Admin') }}
+          {% endif %}
+        </h3>
+        <div class="card-block row">
+          <div class="card-text">
+            {{ form_row(form.idShopGroup) }}
+            {{ form_row(form.idShop) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.value) }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            <a href="{{ url('admin_mpconfigmanager_list') }}" class="btn btn-secondary">{{ 'Cancel'|trans({}, 'Admin.Actions') }}</a>
+            <button class="btn btn-primary">{{ 'Save'|trans({}, 'Admin.Actions') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}
+ {% block javascripts %}
+   {{ parent() }}
+ {% endblock %}

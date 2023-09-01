@@ -1,0 +1,29 @@
+admin_mpconfigmanager_list:
+    path: /mpconfigmanager
+    methods: [GET]
+    defaults:
+        _controller: 'Mp\Module\MpConfigManager\Action\Admin\ConfigListAction::__invoke'
+        _legacy_controller: 'MpConfigManagerController'
+        _legacy_link: 'MpConfigManagerController'
+
+admin_mpconfigmanager_create:
+    path: /mpconfigmanager/new
+    methods: [GET, POST]
+    defaults:
+        _controller: 'Mp\Module\MpConfigManager\Action\Admin\ConfigCreationAction::__invoke'
+
+admin_mpconfigmanager_edit:
+    path: /mpconfigmanager/{id}/edit
+    methods: [GET, POST]
+    defaults:
+        _controller: 'Mp\Module\MpConfigManager\Action\Admin\ConfigEditionAction::__invoke'
+    requirements:
+        id: \d+
+
+admin_mpconfigmanager_delete:
+    path: /mpconfigmanager/{id}/delete
+    methods: [POST]
+    defaults:
+        _controller: 'Mp\Module\MpConfigManager\Action\Admin\ConfigDeletionAction::__invoke'
+    requirements:
+        id: \d+

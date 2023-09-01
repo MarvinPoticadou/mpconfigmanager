@@ -1,0 +1,9 @@
+{
+  "entrypoints": {
+    "grid": {
+      "js": [
+        "/modules/mpconfigmanager/public/build/grid.js"
+      ]
+    }
+  }
+}
